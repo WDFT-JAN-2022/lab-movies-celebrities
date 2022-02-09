@@ -39,4 +39,16 @@ router.get("/movies", (req, res, next) => {
     });
 });
 
+router.get("/:id", (req, res) => {
+  Movie.findById(req.params.id)
+    .populate("cast")
+    .then((results) => {
+      res.render("movies/movie-details", { results });
+    })
+    .catch((err) => {
+      console.log("something went wrong finding the movie", err);
+      res.redirect("/movies");
+    });
+});
+
 module.exports = router;
