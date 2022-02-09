@@ -22,4 +22,16 @@ router.post('/create', (req, res) => {
   })
 })
 
+router.get("/celebrities", (req, res) => {
+    console.log("Celebrities")
+  Celebrity.find()
+    .then((allCelebs) => {
+      console.log("All Celebs", allCelebs);
+      res.render("celebrities/celebrities", { celebs: allCelebs });
+    })
+    .catch((err) => {
+      console.log("Something went wrong", err);
+    });
+});
+
 module.exports = router;
