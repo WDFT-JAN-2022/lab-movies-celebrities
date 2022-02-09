@@ -29,4 +29,14 @@ router.post("/create", (req, res) => {
     });
 });
 
+router.get("/movies", (req, res, next) => {
+  Movie.find()
+    .then((results) => {
+      res.render("movies/movies", { allMovies: results });
+    })
+    .catch((err) => {
+      console.log("Something went wrong", err);
+    });
+});
+
 module.exports = router;
